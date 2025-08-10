@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ventori Services – Explore Our Offerings</title>
+    <!-- Fonts and shared styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-container">
+        <a href="index.html" class="logo">Ventori<span>Data</span></a>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#courses">Courses</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="services-hero">
+      <div class="container">
+        <h1>Explore Our Services</h1>
+        <p>
+          From foundational training to full AI implementation, discover how
+          Ventori Data Solutions can accelerate your AI & automation journey.
+        </p>
+      </div>
+    </section>
+
+    <!-- Tabs for Categories -->
+    <div class="container">
+      <div class="services-tabs" role="tablist">
+        <button class="services-tab active" role="tab" aria-selected="true" data-tab="training">
+          Training
+        </button>
+        <button class="services-tab" role="tab" aria-selected="false" data-tab="workshops">
+          Workshops
+        </button>
+        <button class="services-tab" role="tab" aria-selected="false" data-tab="implementation">
+          Implementation
+        </button>
+        <button class="services-tab" role="tab" aria-selected="false" data-tab="consulting">
+          Consulting
+        </button>
+      </div>
+
+      <!-- Panels -->
+      <div class="category-panel active" id="training" role="tabpanel">
+        <div class="offering-list">
+          <div class="offering-card">
+            <button class="offering-header" type="button">Beginner Program</button>
+            <div class="offering-content">
+              <p>
+                Kickstart your AI journey with a comprehensive introduction to
+                machine learning, automation concepts, and ethical
+                considerations. Includes hands-on exercises and optional
+                certification.
+              </p>
+            </div>
+          </div>
+          <div class="offering-card">
+            <button class="offering-header" type="button">Intermediate Program</button>
+            <div class="offering-content">
+              <p>
+                Deepen your skills with practical AI projects, advanced
+                automation workflows, and integration techniques. Includes exam
+                and certification.
+              </p>
+            </div>
+          </div>
+          <div class="offering-card">
+            <button class="offering-header" type="button">Expert Program</button>
+            <div class="offering-content">
+              <p>
+                Master AI strategy, compliance (EU AI Act), and building
+                production-ready AI systems. Includes capstone project and
+                professional certification.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-panel" id="workshops" role="tabpanel">
+        <div class="offering-list">
+          <div class="offering-card">
+            <button class="offering-header" type="button">RAG System Workshop</button>
+            <div class="offering-content">
+              <p>
+                Learn to build a Retrieval-Augmented Generation system using
+                no-code tools like n8n and vector databases. Includes live
+                demos and your own working pipeline.
+              </p>
+            </div>
+          </div>
+          <div class="offering-card">
+            <button class="offering-header" type="button">Automation Workflow Lab</button>
+            <div class="offering-content">
+              <p>
+                Design and deploy automated workflows for your business
+                processes using tools like n8n, Qdrant, and Ollama.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-panel" id="implementation" role="tabpanel">
+        <div class="offering-list">
+          <div class="offering-card">
+            <button class="offering-header" type="button">Custom RAG System</button>
+            <div class="offering-content">
+              <p>
+                We design, build, and deploy a RAG system tailored to your data
+                and business needs, fully hosted on-prem or in your cloud.
+              </p>
+            </div>
+          </div>
+          <div class="offering-card">
+            <button class="offering-header" type="button">Workflow Automation Integration</button>
+            <div class="offering-content">
+              <p>
+                We analyse your processes and implement automation workflows
+                that integrate seamlessly with your existing tools.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-panel" id="consulting" role="tabpanel">
+        <div class="offering-list">
+          <div class="offering-card">
+            <button class="offering-header" type="button">AI Strategy Consulting</button>
+            <div class="offering-content">
+              <p>
+                Work with our experts to define your AI adoption roadmap,
+                identify high-impact use cases, and ensure compliance with
+                regulations.
+              </p>
+            </div>
+          </div>
+          <div class="offering-card">
+            <button class="offering-header" type="button">Technology Advisory</button>
+            <div class="offering-content">
+              <p>
+                Independent advice on AI platforms, tools, and architectures to
+                fit your business requirements and budget.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-container">
+        <p>&copy; 2025 Ventori Data Solutions. All rights reserved.</p>
+        <nav>
+          <a href="#">Privacy Policy</a> | <a href="#">Imprint</a>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="services.js"></script>
+  </body>
+</html>

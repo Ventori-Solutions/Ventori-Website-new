@@ -1,0 +1,278 @@
+/*
+ * Styles for Ventori Data Solutions Contact Page
+ *
+ * This stylesheet defines the visual appearance of the guided
+ * contact journey. It builds on the global variables defined
+ * in style.css and introduces layouts for the multi‑step form
+ * including the reason selection cards, dynamic option groups,
+ * summary card and success message. Mobile‑first styling is
+ * applied throughout to ensure a smooth experience on all
+ * devices.
+ */
+
+/* Container for the entire contact flow */
+.contact-flow {
+  padding-top: 80px; /* space for fixed header */
+  padding-bottom: 4rem;
+  background-color: #fff;
+}
+
+/* Progress indicator */
+#contact-progress {
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Steps */
+.contact-step {
+  display: none;
+  transition: opacity var(--transition-speed) ease;
+}
+.contact-step.active {
+  display: block;
+}
+
+/* Reason selection cards */
+.reason-grid {
+  /* Use flexbox to limit up to four cards per row and
+   * center the items on the last row. Flexbox provides
+   * better control over wrapping than CSS grid for this
+   * scenario. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+/* Card styles for reasons remain mostly unchanged but now
+ * include flex-basis and max-width to ensure at most four
+ * cards per row. */
+.reason-card {
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1 1 calc(25% - 1rem);
+  max-width: calc(25% - 1rem);
+}
+
+.reason-card h3 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+}
+
+.reason-card p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.reason-card:hover,
+.reason-card.selected {
+  background-color: var(--color-tertiary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Step 2 titles */
+#step-2-title {
+  margin-top: 1rem;
+  color: var(--color-primary);
+}
+#step-2-description {
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+#step-2-content {
+  margin-bottom: 2rem;
+}
+
+/* Option groups & buttons */
+.option-group {
+  margin-bottom: 1.5rem;
+}
+
+.option-group h4 {
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.option-button {
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--transition-speed), color var(--transition-speed),
+    box-shadow var(--transition-speed);
+}
+
+.option-button:hover {
+  background-color: var(--color-tertiary);
+}
+
+.option-button.selected {
+  background-color: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation buttons */
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.step-nav .btn {
+  min-width: 120px;
+}
+.step-nav .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Summary card */
+.summary-card {
+  background-color: var(--color-secondary);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1.5rem;
+}
+
+.summary-card h4 {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.summary-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-card li {
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+/* Form tweaks */
+#contact-form .form-group {
+  margin-bottom: 1rem;
+}
+
+#contact-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--color-primary);
+}
+
+#contact-form input[type="text"],
+#contact-form input[type="email"],
+#contact-form input[type="tel"],
+#contact-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #dbe3ea;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical;
+}
+
+#contact-form input:focus,
+#contact-form textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+#contact-form .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#contact-form .checkbox label {
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+#contact-form .required {
+  color: var(--color-accent);
+  margin-left: 0.25rem;
+}
+
+#contact-form .form-nav {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1rem;
+}
+
+/* Success step */
+#step-4-success {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+#step-4-success h2 {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+#step-4-success p {
+  color: var(--color-muted);
+  margin-bottom: 0.5rem;
+}
+
+#step-4-success a {
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .reason-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  /* On medium screens, show two cards per row */
+  .reason-card {
+    flex: 1 1 calc(0% - 1rem);
+    max-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .reason-grid {
+    grid-template-columns: 1fr;
+  }
+  /* On small screens, cards take full width */
+  .reason-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .step-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .step-nav .btn {
+    margin-bottom: 0.5rem;
+  }
+}

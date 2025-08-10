@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us – Ventori Data Solutions</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- Contact page styles -->
+    <link rel="stylesheet" href="contact.css" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="logo"><a href="index.html#hero">Ventori</a></div>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <nav class="nav">
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#tracks">Courses</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+            <li><a href="contact.html" class="btn btn-primary nav-cta">Book a Call</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="contact-flow">
+        <div class="container">
+          <div id="contact-progress" class="contact-progress">Step 1 of 3</div>
+
+          <!-- Step 1: Reason selection -->
+          <div id="step-1" class="contact-step active">
+            <h2>How can we help you?</h2>
+            <p>Select the reason for your contact.</p>
+            <div class="reason-grid">
+              <button class="reason-card" data-reason="training">
+                <h3>Training</h3>
+                <p>Upskill your team with structured courses</p>
+              </button>
+              <button class="reason-card" data-reason="workshops">
+                <h3>Workshops</h3>
+                <p>Hands‑on sessions for rapid skill‑building</p>
+              </button>
+              <button class="reason-card" data-reason="implementation">
+                <h3>Implementation</h3>
+                <p>Deploy AI &amp; automation solutions</p>
+              </button>
+              <button class="reason-card" data-reason="consulting">
+                <h3>Consulting</h3>
+                <p>Strategic guidance and advisory</p>
+              </button>
+              <button class="reason-card" data-reason="partnership">
+                <h3>Partnership</h3>
+                <p>Collaborate with Ventori</p>
+              </button>
+              <button class="reason-card" data-reason="other">
+                <h3>Other</h3>
+                <p>Not sure? Let's discuss</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Detail selection -->
+          <div id="step-2" class="contact-step">
+            <h2 id="step-2-title">Tell us more</h2>
+            <p id="step-2-description">Choose an option below.</p>
+            <div id="step-2-content"></div>
+            <div class="step-nav">
+              <button id="back-to-step1" class="btn btn-secondary">Back</button>
+              <button id="to-step3" class="btn btn-primary" disabled>Next</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Summary and contact details -->
+          <div id="step-3" class="contact-step">
+            <h2>Review &amp; Contact Details</h2>
+            <div id="summary" class="summary-card"></div>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Name<span class="required">*</span></label>
+                <input type="text" id="name" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Work Email<span class="required">*</span></label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="company">Company</label>
+                <input type="text" id="company" name="company" />
+              </div>
+              <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" id="role" name="role" />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone (optional)</label>
+                <input type="tel" id="phone" name="phone" />
+              </div>
+              <div class="form-group">
+                <label for="message">Additional Message</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+              </div>
+              <div class="form-group checkbox">
+                <input type="checkbox" id="consent" name="consent" required />
+                <label for="consent">I agree to the privacy policy</label>
+              </div>
+              <button type="submit" id="final-submit" class="btn btn-primary">Submit</button>
+              <div class="form-nav">
+                <button id="back-to-step2" type="button" class="btn btn-secondary">Back</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Step 4: Success message -->
+          <div id="step-4-success" class="contact-step">
+            <h2>Thank you!</h2>
+            <p>We've received your information and will get in touch soon.</p>
+            <p>
+              In the meantime, feel free to explore our
+              <a href="services.html">services</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-brand">
+          <h3>Ventori Data Solutions</h3>
+          <p>
+            Bringing humanity and technology together through practical, ethical
+            AI and automation enablement.
+          </p>
+        </div>
+        <div class="footer-nav">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="index.html#hero">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="index.html#tracks">Courses</a></li>
+            <li><a href="index.html#process">Process</a></li>
+            <li><a href="index.html#testimonials">Testimonials</a></li>
+            <li><a href="index.html#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h4>Contact Us</h4>
+          <p>Email: <a href="mailto:info@ventori.ai">info@ventori.ai</a></p>
+          <p>Phone: <a href="tel:+498120123456">+49&nbsp;8120&nbsp;123&nbsp;456</a></p>
+          <p>Königsbrunn, Bavaria, Germany</p>
+        </div>
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <a href="#" aria-label="LinkedIn"
+            ><img
+              src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo.svg"
+              alt="LinkedIn"
+          /></a>
+          <a href="#" aria-label="Twitter"
+            ><img
+              src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Twitter-logo.svg"
+              alt="Twitter"
+          /></a>
+          <a href="#" aria-label="GitHub"
+            ><img
+              src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg"
+              alt="GitHub"
+          /></a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year"></span> Ventori Data Solutions. All rights reserved.</p>
+        <a href="#">Privacy Policy</a>
+        <span>|</span>
+        <a href="#">Terms of Service</a>
+      </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="contact.js"></script>
+  </body>
+</html>
