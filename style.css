@@ -9,15 +9,32 @@
 
 /* CSS Variables for easy theming */
 :root {
+
   --color-primary: #143e6a; /* deep blue */
   --color-accent: #00a8e8; /* teal accent */
-  --color-secondary: #f8f9fa; /* light grey background */
-  --color-tertiary: #e7f4fc; /* pale blue for variety */
-  --color-dark: #051f33; /* darker blue for footer */
-  --color-text: #1e2a38; /* body text */
-  --color-muted: #6c7a89; /* muted text */
+
+  --color-bg-primary: #000E21; /* deep blue */
+  --color-bg-secondary: #00060F; /* deep blue */
+  
+  --color-bg-accent: #000E21; /* teal accent */
+
+  --color-text: #f3f3f3; /* body text */
+  --color-text-muted: #dee0e2; /* body text */
+  --color-text-dark: #1e2a38; /* body text */
+
+
+  /* old colour scheme
+  --color-primary: #143e6a; /* deep blue *
+  --color-accent: #00a8e8; /* teal accent *
+  --color-secondary: #f8f9fa; /* light grey background *
+  --color-tertiary: #e7f4fc; /* pale blue for variety *
+  --color-dark: #051f33; /* darker blue for footer *
+  --color-text: #1e2a38; / body text *
+  --color-muted: #dee0e2; /* muted text *
+  */
+
   --font-base: 'Inter', sans-serif;
-  --transition-speed: 0.3s;
+  --transition-speed: 0.3s; 
 }
 
 /* Base styles */
@@ -36,7 +53,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-text);
-  background-color: #fff;
+  background-color: #00060F;
 }
 
 img {
@@ -61,7 +78,7 @@ a {
 .btn {
   display: inline-block;
   padding: 0.75rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 360px;
   font-weight: 600;
   text-align: center;
   cursor: pointer;
@@ -82,7 +99,7 @@ a {
 
 .btn-secondary {
   background-color: transparent;
-  border: 2px solid var(--color-accent);
+  border: 1px solid var(--color-accent);
   color: var(--color-accent);
 }
 
@@ -111,8 +128,8 @@ a {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: var(--color-bg-primary);  
+  box-shadow: 0 2px 4px rgba(3, 3, 3, 0.05);
   z-index: 1000;
 }
 
@@ -126,7 +143,7 @@ a {
 .logo a {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-accent);
 }
 
 .nav ul {
@@ -186,7 +203,40 @@ a {
   display: flex;
   align-items: center;
   min-height: 80vh;
+
+  background-image: url("assets/hero-banner.png");
+  background-size: cover;       /* Makes sure the image covers the section */
+  background-position: center;  /* Centers the focal point */
+  background-repeat: no-repeat; /* Prevents tiling */
+  padding: 100px 0;              /* Adjust vertical spacing for readability */
+  color: #fff;                   /* White text for better contrast */
+  position: relative;            /* For optional overlays */
 }
+
+/*
+/* Optional: Add a dark overlay for better text readability *
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* semi-transparent black overlay *
+  z-index: 0;
+}
+*
+
+/* subtle dark/blue overlay for contrast like the mockup *
+.hero--bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 600px at 18% 65%, rgba(0,120,255,0.22), transparent 60%),
+    linear-gradient(90deg, rgba(2,10,22,0.92) 0%, rgba(2,10,22,0.62) 45%, rgba(2,10,22,0.15) 85%, rgba(2,10,22,0) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+*/
 
 .hero-inner {
   display: flex;
@@ -195,27 +245,31 @@ a {
   align-items: center;
   text-align: center;
   gap: 2rem;
+
+  position: relative;
+  z-index: 1; /* ensures text is above overlay */
 }
 
 .hero-content h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .hero-content p {
   font-size: 1.125rem;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   max-width: 40ch;
   margin: 0 auto 1.5rem;
 }
 
 .hero-cta {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.75rem;
   align-items: center;
+  justify-content: center;
 }
 
 /* hero image sizing */
@@ -235,20 +289,20 @@ section {
   font-size: 2rem;
   font-weight: 700;
   text-align: center;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .section-intro {
   text-align: center;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   max-width: 60ch;
   margin: 0 auto 2rem;
 }
 
 /* Value Proposition */
 .value-prop {
-  background-color: #fff;
+  background-color: var(--color-bg-secondary);
 }
 
 .value-grid {
@@ -258,7 +312,7 @@ section {
 }
 
 .value-item {
-  background-color: var(--color-secondary);
+  background-color: var(--color-bg-accent);
   padding: 2rem;
   border-radius: 8px;
   text-align: center;
@@ -278,11 +332,11 @@ section {
 .value-item h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .value-item p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 /* services */
@@ -297,7 +351,7 @@ section {
 }
 /* card layout updated: flex to push CTA to bottom */
 .service-card {
-  background-color: #fff;
+  background-color: var(--color-bg-accent);
   border-radius: 8px;
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -318,12 +372,12 @@ section {
 }
 
 .service-card h3 {
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
 .service-card p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
   flex-grow: 1;
 }
@@ -335,7 +389,7 @@ section {
 /* alternate colour for course tracks */
 .tracks {
   /* use tertiary colour to break up the white/grey pattern */
-  background-color: var(--color-tertiary);
+  background-color: var(--color-bg-accent);
 }
 
 .tracks-grid {
@@ -360,12 +414,12 @@ section {
 }
 
 .track-card h3 {
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
 .track-card p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   margin-bottom: 1rem;
 }
 
@@ -382,7 +436,7 @@ section {
 }
 
 .process-step {
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
   border-radius: 8px;
   padding: 1.5rem;
   text-align: center;
@@ -403,17 +457,17 @@ section {
 }
 
 .process-step h3 {
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 
 .process-step p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 /* Testimonials */
 .testimonials {
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
 }
 
 .testimonials-grid {
@@ -433,13 +487,13 @@ section {
 
 .quote {
   font-style: italic;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 1rem;
 }
 
 .author {
   font-weight: 600;
-  color: var(--color-muted);
+  color: var(--color-text-muted);
 }
 
 /* CTA Banner */
@@ -481,7 +535,7 @@ section {
 }
 
 .tech-item span {
-  color: var(--color-primary);
+  color: var(--color-text);
   font-weight: 500;
 }
 
@@ -502,7 +556,7 @@ section {
 
 /* FAQ */
 .faq {
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
 }
 
 .faq-list {
@@ -528,7 +582,7 @@ section {
 
 .faq-list summary {
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   cursor: pointer;
 }
 
@@ -541,7 +595,7 @@ section {
 }
 
 .faq-list p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   margin-top: 0.5rem;
 }
 
@@ -576,7 +630,7 @@ section {
 .form-group label {
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: var(--color-primary);
+  color: var(--color-text);
 }
 
 .form-group input,
@@ -602,7 +656,7 @@ section {
 
 /* Footer */
 .footer {
-  background-color: var(--color-dark);
+  background-color: var(--color-bg-primary);
   color: #ccd6e3;
   padding: 3rem 0 1rem;
 }
@@ -671,7 +725,7 @@ section {
     right: 0;
     width: 200px;
     flex-direction: column;
-    background-color: #fff;
+    background-color: var(--color-bg-primary);
     padding: 1rem;
     transform: translateX(100%);
     transition: transform var(--transition-speed);
@@ -736,11 +790,11 @@ section {
 .services-hero h1 {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 .services-hero p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   max-width: 60ch;
   margin: 0 auto;
 }
@@ -759,7 +813,7 @@ section {
 .services-tab {
   padding: 0.75rem 1.5rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -793,11 +847,11 @@ section {
 .category-panel h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   margin-bottom: 0.5rem;
 }
 .category-panel p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   max-width: 60ch;
 }
 
@@ -809,14 +863,14 @@ section {
   margin-top: 1rem;
 }
 .offering-card {
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
 }
 .offering-card summary {
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   cursor: pointer;
   list-style: none;
 }
@@ -824,7 +878,7 @@ section {
   color: var(--color-accent);
 }
 .offering-card p {
-  color: var(--color-muted);
+  color: var(--color-text-muted);
   margin-top: 0.5rem;
 }
 .offering-card[open] summary {
@@ -836,7 +890,7 @@ section {
   background: none;
   border: none;
   font-weight: 600;
-  color: var(--color-primary);
+  color: var(--color-text);
   text-align: left;
   cursor: pointer;
   padding: 0;
