@@ -1,0 +1,107 @@
+---
+import Accordion from "./Accordion.astro";
+---
+<section class="section bg-primary">
+  <div class="container">
+    <div class="section-head center">
+      <h2 class="h2">Frequently Asked Questions</h2>
+      <p class="lead muted">Answers to common questions about our AI and automation services</p>
+    </div>
+
+    <div class="accordion-group" style="max-width: 800px; margin: 0 auto;">
+      <Accordion title="How do I know if my business is ready for AI?">
+        <p class="muted">AI readiness depends on several factors including your data maturity, business processes, and strategic goals. We offer a free AI readiness assessment that evaluates:</p>
+        <ul class="list-disc">
+          <li>Data infrastructure and quality</li>
+          <li>Process automation potential</li>
+          <li>Team capabilities and training needs</li>
+          <li>Strategic alignment with business objectives</li>
+        </ul>
+        <p class="muted">Most businesses have areas where AI can create value today, even if they're not "AI-first" organizations.</p>
+      </Accordion>
+
+      <Accordion title="What's the typical ROI for AI implementations?">
+        <p class="muted">ROI varies by use case and implementation, but clients typically see:</p>
+        <ul class="list-disc">
+          <li>40–80% reduction in manual processing time for document-intensive workflows</li>
+          <li>30–50% improvement in process accuracy and consistency</li>
+          <li>25–40% increase in team productivity through automation of repetitive tasks</li>
+          <li>20–35% better decision-making through predictive analytics</li>
+        </ul>
+        <p class="muted">We define success metrics upfront during discovery to ensure alignment with your goals.</p>
+      </Accordion>
+
+      <Accordion title="How long does an AI implementation typically take?">
+        <p class="muted">Timelines depend on complexity, but our modular approach allows phased delivery:</p>
+        <ul class="list-disc">
+          <li><strong>Focused solutions:</strong> 4–8 weeks (e.g., document processing automation)</li>
+          <li><strong>Departmental implementations:</strong> 8–16 weeks (e.g., customer service automation)</li>
+          <li><strong>Enterprise transformations:</strong> 6–12 months (phased rollout)</li>
+        </ul>
+        <p class="muted">We deliver tangible value at each stage rather than waiting for an end-state.</p>
+      </Accordion>
+
+      <Accordion title="What about data security and compliance?">
+        <p class="muted">Security and compliance are built in from the ground up:</p>
+        <ul class="list-disc">
+          <li>Privacy-by-design principles</li>
+          <li>On-prem, private cloud, or secure SaaS deployment options</li>
+          <li>Designed to meet GDPR, HIPAA, SOC 2, and other standards</li>
+          <li>Regular security assessments</li>
+          <li>Data governance frameworks</li>
+        </ul>
+      </Accordion>
+
+      <Accordion title="How do you ensure our team can maintain the solutions?">
+        <p class="muted">Knowledge transfer is core to our model:</p>
+        <ul class="list-disc">
+          <li>Comprehensive documentation</li>
+          <li>Tailored training (executive to deep technical)</li>
+          <li>Hands-on workshops during implementation</li>
+          <li>Gradual responsibility transfer with support</li>
+          <li>Managed services options</li>
+        </ul>
+      </Accordion>
+    </div>
+  </div>
+  <script client:load data-accordion-controller>
+    const accordions = Array.from(document.querySelectorAll('.accordion'));
+    const closeAcc = (acc) => {
+      const btn = acc.querySelector('.accordion-button');
+      const content = acc.querySelector('.accordion-content');
+      acc.classList.remove('open');
+      if (btn) btn.setAttribute('aria-expanded','false');
+      if (content) content.style.maxHeight = 0;
+    };
+    const openAcc = (acc) => {
+      const btn = acc.querySelector('.accordion-button');
+      const content = acc.querySelector('.accordion-content');
+      acc.classList.add('open');
+      if (btn) btn.setAttribute('aria-expanded','true');
+      if (content) content.style.maxHeight = content.scrollHeight + 'px';
+    };
+    // init
+    accordions.forEach(acc => {
+      const content = acc.querySelector('.accordion-content');
+      if (acc.classList.contains('open')) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+      } else {
+        content.style.maxHeight = 0;
+      }
+      const btn = acc.querySelector('.accordion-button');
+      btn?.addEventListener('click', () => {
+        const isOpen = acc.classList.contains('open');
+        // close all
+        accordions.forEach(closeAcc);
+        // open the clicked one if it was closed
+        if (!isOpen) openAcc(acc);
+      });
+    });
+    // keep height correct on resize
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.accordion.open .accordion-content').forEach(c => {
+        c.style.maxHeight = c.scrollHeight + 'px';
+      });
+    });
+  </script>
+</section>

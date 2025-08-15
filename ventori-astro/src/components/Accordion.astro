@@ -1,0 +1,14 @@
+---
+const { title, initiallyOpen = false } = Astro.props;
+---
+<div class={`accordion${initiallyOpen ? " open" : ""}`} data-accordion>
+  <button class="accordion-button" aria-expanded={initiallyOpen ? "true" : "false"}>
+    <h3 class="h4">{title}</h3>
+    <i class="fas fa-chevron-down accordion-icon"></i>
+  </button>
+  <div class="accordion-content" role="region">
+    <div class="accordion-inner">
+      <slot />
+    </div>
+  </div>
+</div>
