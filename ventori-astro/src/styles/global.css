@@ -28,6 +28,8 @@ body{
 
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
+.flx{display: flex; flex-direction: column; align-items: center;}
+
 /* Typography */
 .h1{font-size:clamp(2.2rem,4vw,3.5rem);line-height:1.1;margin:0 0 16px}
 .h2{font-size:clamp(1.8rem,3.2vw,2.5rem);line-height:1.2;margin:0 0 12px}
@@ -91,7 +93,8 @@ body{
 .hero-copy .lead{max-width:640px;margin-bottom:24px}
 .hero-card-wrap{position:relative;display:grid;place-items:center}
 .glow{position:absolute;inset:-20px;filter:blur(60px);background:var(--accent);opacity:.2;border-radius:999px}
-.card{
+.card{   
+
   background:var(--bg-accent);
   border-radius:20px;
   box-shadow:var(--shadow);
@@ -174,14 +177,6 @@ body{
 .stat-box{text-align:center}
 .stat-num{font-size:2rem;font-weight:800;color:var(--accent)}
 .divider{border-top:1px solid var(--bg-secondary);margin:24px 0}
-
-/* Contact */
-.contact-grid{display:grid;gap:32px}
-@media (min-width:992px){.contact-grid{grid-template-columns:1fr 1fr;align-items:start}}
-.contact-row{display:flex;gap:16px;margin-bottom:18px;align-items:flex-start}
-.label{display:block;font-weight:600;margin:12px 0 6px}
-.input{width:100%;background:var(--bg-primary);color:#fff;border:1px solid var(--bg-secondary);border-radius:10px;padding:12px 14px;outline:none;transition:border var(--transition), box-shadow var(--transition)}
-.input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(0,168,232,.35)}
 
 /* Footer */
 .site-footer{background:var(--bg-primary);border-top:1px solid var(--bg-accent);padding-top:48px}
@@ -369,7 +364,6 @@ a:hover {
 
 /* --- Global link styling --- */
 a{ color: var(--accent); text-decoration: none; }
-a:visited{ color: var(--accent); }
 a:hover, a:focus{ text-decoration: underline; outline: none; }
 
 /* Footer links should be muted (override global) */
@@ -398,7 +392,7 @@ a:hover, a:focus{ text-decoration: underline; outline: none; }
 
 
 /* Adaptive card hover glow based on accent color */
-.card:hover {
+.card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 40%, transparent);
 }

@@ -9,7 +9,7 @@
         <div class="icon-circle primary"><i class="fas fa-map-marker-alt"></i></div>
         <div>
           <h4>Our Office</h4>
-          <p class="muted">123 AI Avenue, Tech District<br/>San Francisco, CA 94107</p>
+          <p class="muted">86456 Gablingen<br/>Bavaria, Germany</p>
         </div>
       </div>
 
@@ -17,7 +17,7 @@
         <div class="icon-circle primary"><i class="fas fa-envelope"></i></div>
         <div>
           <h4>Email Us</h4>
-          <p class="muted">hello@ventoridata.com<br/>support@ventoridata.com</p>
+          <p class="muted">office@ventoridata.com</p>
         </div>
       </div>
 
@@ -30,13 +30,13 @@
       </div>
 
       <div class="divider"></div>
-      <h3 class="h4">Follow Us</h3>
-      <div class="socials">
-        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      </div>
+        <h3 class="h4">Follow Us</h3>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
     </div>
 
     <div class="contact-form card">
@@ -69,3 +69,27 @@
     </div>
   </div>
 </section>
+
+<style>
+/* Contact */
+.contact-grid{display:grid;gap:32px}
+@media (min-width:992px){.contact-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.contact-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.label{display:block;font-weight:600;margin:12px 0 6px}
+.input{width:100%;background:var(--bg-primary);color:#fff;border:1px solid var(--bg-secondary);border-radius:10px;padding:12px 14px;outline:none;transition:border var(--transition), box-shadow var(--transition)}
+.input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(0,168,232,.35)}
+
+.contact-form{min-height:100%}
+
+textarea{
+  resize: vertical; /* only vertical resizing allowed */
+  overflow: auto;   /* ensures scrollbars appear if needed */}
+
+  
+/* Disable resize on mobile devices */
+@media (max-width: 768px) {
+  textarea {
+    resize: none;
+  }
+}
+</style>

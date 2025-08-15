@@ -1,19 +1,21 @@
 ---
 ---
 <header class="site-header">
-  <div class="container header-inner">
-    <div class="brand">
-      <div class="brand-icon"><i class="fas fa-brain"></i></div>
-      <span class="brand-name">Ventori</span>
-    </div>
+    <a href="#home" class="logo-link">
+      <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-icon"><i class="fas fa-brain"></i></div>
+        <span class="brand-name">Ventori</span>
+      </div>
+    </a>
+  
 
     <nav class="nav" aria-label="Main navigation">
-      <a href="#home" class="nav-link">Home</a>
+      <a href="/" class="nav-link">Home</a>
       <a href="#services" class="nav-link">Services</a>
-      <a href="#usecases" class="nav-link">Use Cases</a>
-      <a href="#process" class="nav-link">Process</a>
-      <a href="#training" class="nav-link">Training</a>
-      <a href="#about" class="nav-link">About</a>
+      <a href="#services" class="nav-link">Insight Hub</a>
+      <a href="#training" class="nav-link">Career</a>
+      <a href="/about" class="nav-link">About</a>
     </nav>
 
     <a href="#contact" class="btn btn-accent header-cta">Contact Us</a>
@@ -24,6 +26,7 @@
   </div>
 
   <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+   
     <a href="#home" class="mobile-link">Home</a>
     <a href="#services" class="mobile-link">Services</a>
     <a href="#usecases" class="mobile-link">Use Cases</a>
@@ -63,3 +66,14 @@
     }
   </script>
 </header>
+
+<style>
+
+  .logo-link
+  {
+    color: --var(--text)
+  }
+
+  a:hover, a:focus{ text-decoration: none; }
+
+ </style>
