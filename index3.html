@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ventori Data Solutions | AI & Automation Experts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        secondary: {
+                            50: '#f5f3ff',
+                            100: '#ede9fe',
+                            200: '#ddd6fe',
+                            300: '#c4b5fd',
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                            700: '#6d28d9',
+                            800: '#5b21b6',
+                            900: '#4c1d95',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in': 'fadeIn 1s ease-in',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(30px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(90deg, #0ea5e9 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(14,165,233,0.1) 0%, rgba(124,58,237,0.1) 100%);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #0ea5e9;
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+            
+            .mobile-menu.open {
+                max-height: 500px;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-600 flex items-center justify-center text-white font-bold text-xl">V</div>
+                        <span class="ml-3 text-xl font-semibold">Ventori <span class="gradient-text">Data Solutions</span></span>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">Services</a>
+                    <a href="#education" class="nav-link text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">Education</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-primary-600 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">Contact Us</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-white">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">Home</a>
+                <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">Services</a>
+                <a href="#education" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">Education</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary-600 hover:bg-gray-50">About</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary-600 hover:bg-primary-700">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient py-20 md:py-32">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="animate-fade-in">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                        Turning <span class="gradient-text">potential</span> into progress
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">
+                        Cut the noise. Build with purpose. We enable people and organizations to turn ideas into working solutions through practical AI and automation.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300 text-center">
+                            Get Started
+                        </a>
+                        <a href="#services" class="border border-primary-600 text-primary-600 hover:bg-primary-50 px-6 py-3 rounded-md text-lg font-medium transition duration-300 text-center">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block animate-float">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI and Automation" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="text-4xl font-bold text-primary-600 mb-2">100+</div>
+                    <div class="text-gray-600">Projects Completed</div>
+                </div>
+                <div class="animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="text-4xl font-bold text-primary-600 mb-2">50+</div>
+                    <div class="text-gray-600">Happy Clients</div>
+                </div>
+                <div class="animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="text-4xl font-bold text-primary-600 mb-2">3</div>
+                    <div class="text-gray-600">Education Tracks</div>
+                </div>
+                <div class="animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="text-4xl font-bold text-primary-600 mb-2">24/7</div>
+                    <div class="text-gray-600">Support Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our <span class="gradient-text">Services</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    We provide comprehensive AI and automation solutions tailored to your business needs.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card bg-white p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">AI & Automation Consulting</h3>
+                    <p class="text-gray-600 mb-4">
+                        Expert guidance to implement AI and automation solutions that drive real business value.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Process analysis & optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Solution architecture</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Implementation strategy</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-cogs text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">No-Code/Low-Code Solutions</h3>
+                    <p class="text-gray-600 mb-4">
+                        Powerful automation without complex coding using platforms like n8n, Supabase, and OpenAI.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>RAG & agent development</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Workflow automation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Custom integrations</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Self-Hosted Solutions</h3>
+                    <p class="text-gray-600 mb-4">
+                        Maintain control with locally hosted AI solutions tailored to your security requirements.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Locally hosted LLMs</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Qdrant vector databases</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>OpenWebUI interfaces</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.4s;">
+                    <div class="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-project-diagram text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Business Process Automation</h3>
+                    <p class="text-gray-600 mb-4">
+                        Streamline operations and reduce manual work with intelligent automation.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Document processing</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Data extraction</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Workflow orchestration</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.5s;">
+                    <div class="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-plug text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Plug-and-Play AI Solutions</h3>
+                    <p class="text-gray-600 mb-4">
+                        Ready-to-use AI tools for non-technical users to enhance productivity.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Chat interfaces</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Knowledge management</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Decision support</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="service-card bg-white p-8 rounded-xl shadow-md animate-slide-up" style="animation-delay: 0.6s;">
+                    <div class="w-14 h-14 bg-primary-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-graduation-cap text-primary-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Corporate Training</h3>
+                    <p class="text-gray-600 mb-4">
+                        From beginner to expert level training in AI and automation technologies.
+                    </p>
+                    <ul class="space-y-2 text-gray-600">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Hands-on workshops</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Customized curriculum</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-primary-600 mt-1 mr-2"></i>
+                            <span>Ongoing support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Tracks Section -->
+    <section id="education" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Education <span class="gradient-text">Tracks</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Structured learning paths to build AI and automation expertise in your organization.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-b from-primary-50 to-white p-8 rounded-xl shadow-md border border-primary-100 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-bolt text-primary-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">AI Spark</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Beginner-level introduction to AI and automation concepts for non-technical teams.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>Fundamentals of AI</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>No-code automation basics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>Identifying automation opportunities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>Ethical considerations</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-b from-secondary-50 to-white p-8 rounded-xl shadow-md border border-secondary-100 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-fire text-secondary-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">AI Ignite</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Intermediate training for teams ready to implement AI and automation solutions.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-600 mt-1 mr-2"></i>
+                            <span>Building RAG applications</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-600 mt-1 mr-2"></i>
+                            <span>Workflow automation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-600 mt-1 mr-2"></i>
+                            <span>Data integration techniques</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-secondary-600 mt-1 mr-2"></i>
+                            <span>Performance measurement</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gradient-to-b from-primary-50 to-white p-8 rounded-xl shadow-md border border-primary-100 animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-atom text-primary-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold">AI Catalyst</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        Advanced training for technical teams to build sophisticated AI solutions.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>Agentic AI systems</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>Self-hosted solutions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>EU AI Act compliance</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-primary-600 mt-1 mr-2"></i>
+                            <span>Advanced optimization</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-gray-50 p-8 rounded-xl border border-gray-200 animate-slide-up" style="animation-delay: 0.4s;">
+                <h3 class="text-2xl font-bold mb-6 text-center">Modular <span class="gradient-text">Deep-Dives</span></h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-search text-primary-600"></i>
+                        </div>
+                        <span class="font-medium">RAG Systems</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-robot text-primary-600"></i>
+                        </div>
+                        <span class="font-medium">Agentic AI</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-balance-scale text-primary-600"></i>
+                        </div>
+                        <span class="font-medium">EU AI Act</span>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm flex items-center">
+                        <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-shield-alt text-primary-600"></i>
+                        </div>
+                        <span class="font-medium">AI Security</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12 items-center">
+                <div class="mb-12 lg:mb-0 animate-slide-up" style="animation-delay: 0.1s;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About <span class="gradient-text">Ventori</span></h2>
+                    <p class="text-gray-600 mb-6">
+                        Ventori Data Solutions was founded on the principle that technology should serve people, not the other way around. We believe in practical, responsible AI and automation that delivers measurable results without unnecessary complexity.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Our team combines deep technical expertise with a focus on education and enablement. We don't just build solutions for you—we empower your team to understand, maintain, and evolve them.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-lightbulb text-primary-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Our Vision</h4>
+                            <p class="text-gray-600">Turning potential into progress</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="bg-white p-8 rounded-xl shadow-md">
+                        <h3 class="text-xl font-bold mb-6">Our <span class="gradient-text">Approach</span></h3>
+                        <div class="space-y-6">
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">1</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Assess</h4>
+                                    <p class="text-gray-600">We start by understanding your unique challenges and opportunities through comprehensive analysis.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">2</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Educate</h4>
+                                    <p class="text-gray-600">We ensure your team has the knowledge to make informed decisions about technology adoption.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">3</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Implement</h4>
+                                    <p class="text-gray-600">We build solutions that integrate seamlessly with your existing systems and processes.</p>
+                                </div>
+                            </div>
+                            <div class="flex">
+                                <div class="flex-shrink-0 mr-4">
+                                    <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600">4</div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold mb-2">Optimize</h4>
+                                    <p class="text-gray-600">We continuously monitor and improve solutions to ensure they deliver maximum value.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our <span class="gradient-text">Clients Say</span></h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Don't just take our word for it—here's what our clients have to say about working with us.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold mr-4">JD</div>
+                        <div>
+                            <h4 class="font-bold">Jane Doe</h4>
+                            <p class="text-gray-500 text-sm">CTO, TechCorp</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "Ventori transformed our document processing workflow with their AI solution. What used to take days now happens in minutes with greater accuracy."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold mr-4">JS</div>
+                        <div>
+                            <h4 class="font-bold">John Smith</h4>
+                            <p class="text-gray-500 text-sm">Operations Director, RetailCo</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "The automation training from Ventori empowered our team to build our own solutions. Their hands-on approach made complex concepts accessible."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-xl animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-bold mr-4">AB</div>
+                        <div>
+                            <h4 class="font-bold">Alice Brown</h4>
+                            <p class="text-gray-500 text-sm">CEO, FinServe</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">
+                        "Their self-hosted AI solution gave us the power of cutting-edge technology while maintaining complete data control—exactly what we needed in finance."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-r from-primary-600 to-secondary-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Ready to Transform Your Business?</h2>
+            <p class="text-xl text-primary-100 mb-8 max-w-3xl mx-auto">
+                Let's discuss how Ventori Data Solutions can help you harness the power of AI and automation.
+            </p>
+            <a href="#contact" class="bg-white text-primary-600 hover:bg-gray-100 px-8 py-4 rounded-md text-lg font-bold transition duration-300 inline-block">
+                Get in Touch
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-12">
+                <div class="mb-12 lg:mb-0 animate-slide-up" style="animation-delay: 0.1s;">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Contact <span class="gradient-text">Us</span></h2>
+                    <p class="text-gray-600 mb-8">
+                        Have questions about our services or want to discuss a project? Fill out the form or reach out directly—we'd love to hear from you.
+                    </p>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Email</h4>
+                                <a href="mailto:info@ventoridata.com" class="text-gray-600 hover:text-primary-600">info@ventoridata.com</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4 mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Phone</h4>
+                                <a href="tel:+1234567890" class="text-gray-600 hover:text-primary-600">+1 (234) 567-890</a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center text-primary-600 mr-4 mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Location</h4>
+                                <p class="text-gray-600">123 Tech Street, Innovation District<br>San Francisco, CA 94107</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-slide-up" style="animation-delay: 0.2s;">
+                    <form class="bg-gray-50 p-8 rounded-xl">
+                        <div class="mb-6">
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Your name">
+                        </div>
+                        <div class="mb-6">
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="your.email@example.com">
+                        </div>
+                        <div class="mb-6">
+                            <label for="company" class="block text-gray-700 font-medium mb-2">Company (Optional)</label>
+                            <input type="text" id="company" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="Your company">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-primary-500 to-secondary-600 flex items-center justify-center text-white font-bold text-xl">V</div>
+                        <span class="ml-3 text-xl font-semibold">Ventori</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Turning potential into progress through practical AI and automation solutions.
+                    </p>
+                    <div class="flex space-x-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">AI Consulting</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Automation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">No-Code Solutions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Self-Hosted AI</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Corporate Training</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Education</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">AI Spark</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">AI Ignite</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">AI Catalyst</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Deep Dives</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Workshops</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Our Approach</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Case Studies</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">
+                    &copy; 2023 Ventori Data Solutions. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition duration-300">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                if (mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                }
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Animation on scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.animate-slide-up, .animate-fade-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
