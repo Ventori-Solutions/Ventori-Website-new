@@ -3,6 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Accordion from "../components/Accordion.astro";
+import { serviceCategories } from "../content/services";
 import "../styles/services.css";
 ---
 <BaseLayout title="Ventori Services – Explore Our Offerings" description="From foundational training to full AI implementation, discover how Ventori Data Solutions can accelerate your AI & automation journey.">
@@ -20,139 +21,38 @@ import "../styles/services.css";
     <section class="services-overview">
       <div class="container">
         <div class="services-tabs" role="tablist">
-          <button
-            id="tab-training"
-            class="services-tab active"
-            type="button"
-            role="tab"
-            aria-selected="true"
-            aria-controls="training"
-            tabindex="0"
-          >
-            Training
-          </button>
-          <button
-            id="tab-workshops"
-            class="services-tab"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="workshops"
-            tabindex="-1"
-          >
-            Workshops
-          </button>
-          <button
-            id="tab-implementation"
-            class="services-tab"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="implementation"
-            tabindex="-1"
-          >
-            Implementation
-          </button>
-          <button
-            id="tab-consulting"
-            class="services-tab"
-            type="button"
-            role="tab"
-            aria-selected="false"
-            aria-controls="consulting"
-            tabindex="-1"
-          >
-            Consulting
-          </button>
+          {serviceCategories.map((category, index) => (
+            <button
+              id={`tab-${category.id}`}
+              class={`services-tab${index === 0 ? ' active' : ''}`}
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls={category.id}
+              tabindex={index === 0 ? '0' : '-1'}
+            >
+              {category.title}
+            </button>
+          ))}
         </div>
 
-        <div
-          id="training"
-          class="category-panel"
-          role="tabpanel"
-          aria-labelledby="tab-training"
-        >
-          <div class="accordion-group">
-            <Accordion title="Beginner Program">
-              <p class="muted">
-                Kickstart your AI journey with a comprehensive introduction to machine learning, automation concepts, and ethical considerations. Includes hands-on exercises and optional certification.
-              </p>
-            </Accordion>
-            <Accordion title="Intermediate Program">
-              <p class="muted">
-                Deepen your skills with practical AI projects, advanced automation workflows, and integration techniques. Includes exam and certification.
-              </p>
-            </Accordion>
-            <Accordion title="Expert Program">
-              <p class="muted">
-                Master AI strategy, compliance (EU AI Act), and building production-ready AI systems. Includes capstone project and professional certification.
-              </p>
-            </Accordion>
+        {serviceCategories.map((category, index) => (
+          <div
+            id={category.id}
+            class="category-panel"
+            role="tabpanel"
+            aria-labelledby={`tab-${category.id}`}
+            hidden={index !== 0}
+          >
+            <div class="accordion-group">
+              {category.items.map(item => (
+                <Accordion title={item.title} initiallyOpen={item.initiallyOpen}>
+                  <p class="muted">{item.description}</p>
+                </Accordion>
+              ))}
+            </div>
           </div>
-        </div>
-
-        <div
-          id="workshops"
-          class="category-panel"
-          role="tabpanel"
-          aria-labelledby="tab-workshops"
-          hidden
-        >
-          <div class="accordion-group">
-            <Accordion title="RAG System Workshop">
-              <p class="muted">
-                Learn to build a Retrieval-Augmented Generation system using no-code tools like n8n and vector databases. Includes live demos and your own working pipeline.
-              </p>
-            </Accordion>
-            <Accordion title="Automation Workflow Lab">
-              <p class="muted">
-                Design and deploy automated workflows for your business processes using tools like n8n, Qdrant, and Ollama.
-              </p>
-            </Accordion>
-          </div>
-        </div>
-
-        <div
-          id="implementation"
-          class="category-panel"
-          role="tabpanel"
-          aria-labelledby="tab-implementation"
-          hidden
-        >
-          <div class="accordion-group">
-            <Accordion title="Custom RAG System">
-              <p class="muted">
-                We design, build, and deploy a RAG system tailored to your data and business needs, fully hosted on-prem or in your cloud.
-              </p>
-            </Accordion>
-            <Accordion title="Workflow Automation Integration">
-              <p class="muted">
-                We analyse your processes and implement automation workflows that integrate seamlessly with your existing tools.
-              </p>
-            </Accordion>
-          </div>
-        </div>
-
-        <div
-          id="consulting"
-          class="category-panel"
-          role="tabpanel"
-          aria-labelledby="tab-consulting"
-          hidden
-        >
-          <div class="accordion-group">
-            <Accordion title="AI Strategy Consulting">
-              <p class="muted">
-                Work with our experts to define your AI adoption roadmap, identify high-impact use cases, and ensure compliance with regulations.
-              </p>
-            </Accordion>
-            <Accordion title="Technology Advisory">
-              <p class="muted">
-                Independent advice on AI platforms, tools, and architectures to fit your business requirements and budget.
-              </p>
-            </Accordion>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
   </main>
