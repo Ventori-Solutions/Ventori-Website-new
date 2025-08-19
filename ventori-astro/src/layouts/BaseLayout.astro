@@ -33,9 +33,9 @@ const { title = "Ventori Data Solutions", description = "Pragmatic AI & automati
       // Reveal on scroll
       const revealables = [];
       const addRevealables = () => {
-        document.querySelectorAll('.card, .step, .value').forEach(el => {
+        document.querySelectorAll('.card, .step, .value, .reveal').forEach(el => {
           if (!el.classList.contains('reveal')) el.classList.add('reveal');
-          revealables.push(el);
+          if (!revealables.includes(el)) revealables.push(el);
         });
         onScroll();
       };
