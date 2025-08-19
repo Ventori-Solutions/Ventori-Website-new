@@ -20,13 +20,58 @@ import "../styles/services.css";
     <section class="services-overview">
       <div class="container">
         <div class="services-tabs" role="tablist">
-          <button class="services-tab active" type="button" role="tab" aria-selected="true" data-tab="training">Training</button>
-          <button class="services-tab" type="button" role="tab" aria-selected="false" data-tab="workshops">Workshops</button>
-          <button class="services-tab" type="button" role="tab" aria-selected="false" data-tab="implementation">Implementation</button>
-          <button class="services-tab" type="button" role="tab" aria-selected="false" data-tab="consulting">Consulting</button>
+          <button
+            id="tab-training"
+            class="services-tab active"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="training"
+            tabindex="0"
+          >
+            Training
+          </button>
+          <button
+            id="tab-workshops"
+            class="services-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="workshops"
+            tabindex="-1"
+          >
+            Workshops
+          </button>
+          <button
+            id="tab-implementation"
+            class="services-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="implementation"
+            tabindex="-1"
+          >
+            Implementation
+          </button>
+          <button
+            id="tab-consulting"
+            class="services-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="consulting"
+            tabindex="-1"
+          >
+            Consulting
+          </button>
         </div>
 
-        <div id="training" class="category-panel active" role="tabpanel">
+        <div
+          id="training"
+          class="category-panel"
+          role="tabpanel"
+          aria-labelledby="tab-training"
+        >
           <div class="accordion-group">
             <Accordion title="Beginner Program">
               <p class="muted">
@@ -46,7 +91,13 @@ import "../styles/services.css";
           </div>
         </div>
 
-        <div id="workshops" class="category-panel" role="tabpanel">
+        <div
+          id="workshops"
+          class="category-panel"
+          role="tabpanel"
+          aria-labelledby="tab-workshops"
+          hidden
+        >
           <div class="accordion-group">
             <Accordion title="RAG System Workshop">
               <p class="muted">
@@ -61,7 +112,13 @@ import "../styles/services.css";
           </div>
         </div>
 
-        <div id="implementation" class="category-panel" role="tabpanel">
+        <div
+          id="implementation"
+          class="category-panel"
+          role="tabpanel"
+          aria-labelledby="tab-implementation"
+          hidden
+        >
           <div class="accordion-group">
             <Accordion title="Custom RAG System">
               <p class="muted">
@@ -76,7 +133,13 @@ import "../styles/services.css";
           </div>
         </div>
 
-        <div id="consulting" class="category-panel" role="tabpanel">
+        <div
+          id="consulting"
+          class="category-panel"
+          role="tabpanel"
+          aria-labelledby="tab-consulting"
+          hidden
+        >
           <div class="accordion-group">
             <Accordion title="AI Strategy Consulting">
               <p class="muted">
@@ -96,20 +159,33 @@ import "../styles/services.css";
   <Footer />
 
   <script client:load>
-    const tabs = document.querySelectorAll('.services-tab');
-    const panels = document.querySelectorAll('.category-panel');
+    const tabs = Array.from(document.querySelectorAll('.services-tab'));
+    const panels = Array.from(document.querySelectorAll('.category-panel'));
+
+    function activateTab(tab) {
+      const targetId = tab.getAttribute('aria-controls');
+      tabs.forEach(t => {
+        const selected = t === tab;
+        t.classList.toggle('active', selected);
+        t.setAttribute('aria-selected', selected);
+        t.setAttribute('tabindex', selected ? '0' : '-1');
+      });
+      panels.forEach(panel => {
+        panel.toggleAttribute('hidden', panel.id !== targetId);
+      });
+      tab.focus();
+    }
+
     tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.getAttribute('data-tab');
-        tabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-        panels.forEach(panel => {
-          panel.classList.toggle('active', panel.id === target);
-        });
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+          e.preventDefault();
+          const dir = e.key === 'ArrowRight' ? 1 : -1;
+          const idx = tabs.indexOf(tab);
+          const next = tabs[(idx + dir + tabs.length) % tabs.length];
+          activateTab(next);
+        }
       });
     });
 
