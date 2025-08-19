@@ -1,12 +1,23 @@
 ---
+import { Image } from "astro:assets";
+import heroBg from "../assets/hero-banner.png"; // lives in src/assets
 ---
+
+
 <section id="home" class="hero">
+  <!-- Background Image -->
+  <Image 
+    src={heroBg} 
+    alt="Hero background" 
+    class="hero-bg" 
+    aria-hidden="true" 
+  />
   <div class="container hero-grid">
     <div class="hero-copy">
       <h1 class="h1">Unlock Your <span class="text-accent">AI Potential</span> with Expert Guidance</h1>
       <p class="lead">Cut the noise. Build with purpose. We help businesses implement practical AI solutions that drive measurable results.</p>
       <div class="btn-row">
-        <a href="#contact" class="btn btn-accent">Book a Call</a>
+        <a href="#contact" class="btn btn-accent">Book a Free Strategy Call</a>
         <a href="#services" class="btn btn-outline">Learn More</a>
       </div>
     </div>
@@ -25,3 +36,26 @@
     </div>
   </div>
 </section>
+
+<style> 
+
+.hero {  
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: 70vh;
+  padding:128px 0 72px;
+  <!-- background:linear-gradient(135deg, var(--bg-primary) 0%, var(--primary) 50%, var(--accent) 100%); -->
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* behaves like background-size: cover */
+  z-index: -1;
+}
+
+
+</style>

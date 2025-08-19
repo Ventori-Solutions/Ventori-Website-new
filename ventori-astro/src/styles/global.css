@@ -84,10 +84,6 @@ body{
 }
 
 /* Hero */
-.hero{
-  padding:128px 0 72px;
-  background:linear-gradient(135deg, var(--bg-primary) 0%, var(--primary) 50%, var(--accent) 100%);
-}
 .hero-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
 @media (min-width:900px){.hero-grid{grid-template-columns:1fr 1fr}}
 .hero-copy .lead{max-width:640px;margin-bottom:24px}
@@ -326,11 +322,6 @@ a:hover {
   color: #fff;
 }
 
-/* Divider */
-.footer-divider {
-  border-top: 1px solid rgba(255,255,255,.08);
-  margin-top: 3rem;
-}
 
 /* Bottom row */
 .footer-bottom {
