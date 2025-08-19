@@ -196,20 +196,32 @@ import "../styles/services.css";
         const btn = acc.querySelector('.accordion-button');
         const content = acc.querySelector('.accordion-content');
         if (btn) btn.setAttribute('aria-expanded', 'false');
-        if (content) content.style.maxHeight = 0;
+        if (content) {
+          content.style.maxHeight = 0;
+          content.setAttribute('hidden', '');
+        }
       };
       const openAcc = acc => {
         acc.classList.add('open');
         const btn = acc.querySelector('.accordion-button');
         const content = acc.querySelector('.accordion-content');
         if (btn) btn.setAttribute('aria-expanded', 'true');
-        if (content) content.style.maxHeight = content.scrollHeight + 'px';
+        if (content) {
+          content.removeAttribute('hidden');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
       };
       accordions.forEach(acc => {
         const btn = acc.querySelector('.accordion-button');
         const content = acc.querySelector('.accordion-content');
-        if (acc.classList.contains('open') && content) {
-          content.style.maxHeight = content.scrollHeight + 'px';
+        if (content) {
+          if (acc.classList.contains('open')) {
+            content.removeAttribute('hidden');
+            content.style.maxHeight = content.scrollHeight + 'px';
+          } else {
+            content.setAttribute('hidden', '');
+            content.style.maxHeight = 0;
+          }
         }
         btn?.addEventListener('click', () => {
           const isOpen = acc.classList.contains('open');

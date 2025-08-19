@@ -1,12 +1,27 @@
 ---
+import { randomUUID } from 'node:crypto';
+
 const { title, initiallyOpen = false } = Astro.props;
+const buttonId = `accordion-btn-${randomUUID()}`;
+const contentId = `${buttonId}-content`;
 ---
 <div class={`accordion${initiallyOpen ? " open" : ""}`} data-accordion>
-  <button class="accordion-button" aria-expanded={initiallyOpen ? "true" : "false"}>
+  <button
+    id={buttonId}
+    class="accordion-button"
+    aria-expanded={initiallyOpen ? "true" : "false"}
+    aria-controls={contentId}
+  >
     <h3 class="h4">{title}</h3>
     <i class="fas fa-chevron-down accordion-icon"></i>
   </button>
-  <div class="accordion-content" role="region">
+  <div
+    id={contentId}
+    class="accordion-content"
+    role="region"
+    aria-labelledby={buttonId}
+    hidden={!initiallyOpen}
+  >
     <div class="accordion-inner">
       <slot />
     </div>

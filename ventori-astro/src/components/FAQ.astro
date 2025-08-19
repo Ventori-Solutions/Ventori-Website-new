@@ -71,22 +71,32 @@ import Accordion from "./Accordion.astro";
       const content = acc.querySelector('.accordion-content');
       acc.classList.remove('open');
       if (btn) btn.setAttribute('aria-expanded','false');
-      if (content) content.style.maxHeight = 0;
+      if (content) {
+        content.style.maxHeight = 0;
+        content.setAttribute('hidden', '');
+      }
     };
     const openAcc = (acc) => {
       const btn = acc.querySelector('.accordion-button');
       const content = acc.querySelector('.accordion-content');
       acc.classList.add('open');
       if (btn) btn.setAttribute('aria-expanded','true');
-      if (content) content.style.maxHeight = content.scrollHeight + 'px';
+      if (content) {
+        content.removeAttribute('hidden');
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
     };
     // init
     accordions.forEach(acc => {
       const content = acc.querySelector('.accordion-content');
-      if (acc.classList.contains('open')) {
-        content.style.maxHeight = content.scrollHeight + 'px';
-      } else {
-        content.style.maxHeight = 0;
+      if (content) {
+        if (acc.classList.contains('open')) {
+          content.removeAttribute('hidden');
+          content.style.maxHeight = content.scrollHeight + 'px';
+        } else {
+          content.setAttribute('hidden', '');
+          content.style.maxHeight = 0;
+        }
       }
       const btn = acc.querySelector('.accordion-button');
       btn?.addEventListener('click', () => {
