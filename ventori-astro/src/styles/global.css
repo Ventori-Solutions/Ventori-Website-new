@@ -56,7 +56,7 @@ body{
 .btn-row{display:flex;gap:16px;flex-wrap:wrap}
 
 /* Header */
-.site-header{position:fixed;inset:0 0 auto 0;background:var(--bg-primary);border-bottom:1px solid var(--bg-accent);z-index:50}
+.site-header{position:sticky;inset:0 0 auto 0;background:var(--bg-primary);border-bottom:1px solid var(--bg-accent);z-index:50}
 .header-inner{display:flex;align-items:center;gap:24px;padding:16px 24px}
 .brand{display:flex;align-items:center;gap:12px}
 .brand-icon{width:40px;height:40px;border-radius:50%;background:var(--accent);display:grid;place-items:center;color:#fff}
