@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Accordion from "../components/Accordion.astro";
+import { serviceCategories } from "../content/services";
+import "../styles/services.css";
+---
+<BaseLayout title="Ventori Services – Explore Our Offerings" description="From foundational training to full AI implementation, discover how Ventori Data Solutions can accelerate your AI & automation journey.">
+  <Header />
+  <main>
+    <section class="services-hero">
+      <div class="container">
+        <h1 class="h1">Explore Our Services</h1>
+        <p class="lead muted">
+          From foundational training to full AI implementation, discover how Ventori Data Solutions can accelerate your AI & automation journey.
+        </p>
+      </div>
+    </section>
+
+    <section class="services-overview">
+      <div class="container">
+        <div class="services-tabs" role="tablist">
+          {serviceCategories.map((category, index) => (
+            <button
+              id={`tab-${category.id}`}
+              class={`services-tab${index === 0 ? ' active' : ''}`}
+              type="button"
+              role="tab"
+              aria-selected={index === 0 ? 'true' : 'false'}
+              aria-controls={category.id}
+              tabindex={index === 0 ? '0' : '-1'}
+            >
+              {category.title}
+            </button>
+          ))}
+        </div>
+
+        {serviceCategories.map((category, index) => (
+          <div
+            id={category.id}
+            class="category-panel"
+            role="tabpanel"
+            aria-labelledby={`tab-${category.id}`}
+            hidden={index !== 0}
+          >
+            <div class="accordion-group">
+              {category.items.map(item => (
+                <Accordion title={item.title} initiallyOpen={item.initiallyOpen}>
+                  <p class="muted">{item.description}</p>
+                </Accordion>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script src="/src/scripts/services.ts" client:load></script>
+</BaseLayout>
