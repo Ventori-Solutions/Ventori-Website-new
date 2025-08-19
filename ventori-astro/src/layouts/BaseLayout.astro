@@ -1,0 +1,53 @@
+---
+const { title = "Ventori Data Solutions", description = "Pragmatic AI & automation training, implementation, and consulting." } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/src/styles/global.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+  </head>
+  <body>
+    <slot />
+    <!-- Global JS: header offset scroll + reveal-on-scroll -->
+    <script is:inline>
+      // Smooth scroll with header offset
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        const id = a.getAttribute('href');
+        if (!id || id === '#') return;
+        const target = document.querySelector(id);
+        if (!target) return;
+        e.preventDefault();
+        const header = document.querySelector('.site-header');
+        const offset = header ? header.offsetHeight + 8 : 0;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      });
+
+      // Reveal on scroll
+      const revealables = [];
+      const addRevealables = () => {
+        document.querySelectorAll('.card, .step, .value').forEach(el => {
+          if (!el.classList.contains('reveal')) el.classList.add('reveal');
+          revealables.push(el);
+        });
+        onScroll();
+      };
+      const onScroll = () => {
+        const trigger = window.innerHeight * 0.85;
+        revealables.forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < trigger) el.classList.add('in');
+        });
+      };
+      window.addEventListener('load', addRevealables);
+      window.addEventListener('scroll', onScroll);
+    </script>
+  </body>
+</html>

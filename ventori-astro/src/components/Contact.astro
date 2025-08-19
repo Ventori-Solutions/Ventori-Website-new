@@ -1,0 +1,95 @@
+---
+---
+<section id="contact" class="section bg-secondary">
+  <div class="container contact-grid">
+    <div class="contact-info card">
+      <h3 class="h3">Contact Information</h3>
+
+      <div class="contact-row">
+        <div class="icon-circle primary"><i class="fas fa-map-marker-alt"></i></div>
+        <div>
+          <h4>Our Office</h4>
+          <p class="muted">86456 Gablingen<br/>Bavaria, Germany</p>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="icon-circle primary"><i class="fas fa-envelope"></i></div>
+        <div>
+          <h4>Email Us</h4>
+          <p class="muted">office@ventoridata.com</p>
+        </div>
+      </div>
+
+      <div class="contact-row">
+        <div class="icon-circle primary"><i class="fas fa-phone-alt"></i></div>
+        <div>
+          <h4>Call Us</h4>
+          <p class="muted">+1 (555) 123-4567<br/>Mon–Fri, 9–17</p>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+        <h3 class="h4">Follow Us</h3>
+        <div class="socials">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
+    <div class="contact-form card">
+      <h3 class="h3">Send Us a Message</h3>
+      <form onsubmit="event.preventDefault(); alert('Thanks! We will get back to you.');">
+        <label class="label" for="name">Your Name</label>
+        <input id="name" class="input" type="text" required />
+
+        <label class="label" for="email">Email Address</label>
+        <input id="email" class="input" type="email" required />
+
+        <label class="label" for="company">Company</label>
+        <input id="company" class="input" type="text" />
+
+        <label class="label" for="interest">Area of Interest</label>
+        <select id="interest" class="input" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="ai-implementation">AI Implementation</option>
+          <option value="training">Training Programs</option>
+          <option value="consulting">Strategic Consulting</option>
+          <option value="automation">Process Automation</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label class="label" for="message">How Can We Help?</label>
+        <textarea id="message" class="input" rows="4" required></textarea>
+
+        <button type="submit" class="btn btn-accent block">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Contact */
+.contact-grid{display:grid;gap:32px}
+@media (min-width:992px){.contact-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.contact-row{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.label{display:block;font-weight:600;margin:12px 0 6px}
+.input{width:100%;background:var(--bg-primary);color:#fff;border:1px solid var(--bg-secondary);border-radius:10px;padding:12px 14px;outline:none;transition:border var(--transition), box-shadow var(--transition)}
+.input:focus{border-color:var(--accent);box-shadow:0 0 0 2px rgba(0,168,232,.35)}
+
+.contact-form{min-height:100%}
+
+textarea{
+  resize: vertical; /* only vertical resizing allowed */
+  overflow: auto;   /* ensures scrollbars appear if needed */}
+
+  
+/* Disable resize on mobile devices */
+@media (max-width: 768px) {
+  textarea {
+    resize: none;
+  }
+}
+</style>

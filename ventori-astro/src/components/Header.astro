@@ -1,0 +1,79 @@
+---
+---
+<header class="site-header">
+    <a href="#home" class="logo-link">
+      <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-icon"><i class="fas fa-brain"></i></div>
+        <span class="brand-name">Ventori</span>
+      </div>
+    </a>
+  
+
+    <nav class="nav" aria-label="Main navigation">
+      <a href="/" class="nav-link">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#services" class="nav-link">Insight Hub</a>
+      <a href="#training" class="nav-link">Career</a>
+      <a href="/about" class="nav-link">About</a>
+    </nav>
+
+    <a href="#contact" class="btn btn-accent header-cta">Contact Us</a>
+
+    <button id="mobile-menu-button" class="mobile-menu-button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+   
+    <a href="#home" class="mobile-link">Home</a>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#usecases" class="mobile-link">Use Cases</a>
+    <a href="#process" class="mobile-link">Process</a>
+    <a href="#training" class="mobile-link">Training</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+  <script client:load>
+    const mobileBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenu = () => {
+      if (!mobileMenu) return;
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden','true');
+      if (mobileBtn) mobileBtn.setAttribute('aria-expanded','false');
+      mobileMenu.style.maxHeight = 0;
+    };
+    const openMenu = () => {
+      if (!mobileMenu) return;
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden','false');
+      if (mobileBtn) mobileBtn.setAttribute('aria-expanded','true');
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+    };
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+      });
+      mobileMenu.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', closeMenu);
+      });
+      // Close menu if switching to desktop
+      const mq = window.matchMedia('(min-width: 768px)');
+      const onMQ = e => { if (e.matches) closeMenu(); };
+      mq.addEventListener ? mq.addEventListener('change', onMQ) : mq.addListener(onMQ);
+    }
+  </script>
+</header>
+
+<style>
+
+  .logo-link
+  {
+    color: --var(--text)
+  }
+
+  a:hover, a:focus{ text-decoration: none; }
+
+ </style>
