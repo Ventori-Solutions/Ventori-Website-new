@@ -1,0 +1,152 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Accordion from "../components/Accordion.astro";
+import "../styles/services.css";
+---
+<BaseLayout title="Ventori Services – Explore Our Offerings" description="From foundational training to full AI implementation, discover how Ventori Data Solutions can accelerate your AI & automation journey.">
+  <Header />
+  <main>
+    <section class="services-hero">
+      <div class="container">
+        <h1 class="h1">Explore Our Services</h1>
+        <p class="lead muted">
+          From foundational training to full AI implementation, discover how Ventori Data Solutions can accelerate your AI & automation journey.
+        </p>
+      </div>
+    </section>
+
+    <section class="services-overview">
+      <div class="container">
+        <div class="services-tabs" role="tablist">
+          <button class="services-tab active" type="button" role="tab" aria-selected="true" data-tab="training">Training</button>
+          <button class="services-tab" type="button" role="tab" aria-selected="false" data-tab="workshops">Workshops</button>
+          <button class="services-tab" type="button" role="tab" aria-selected="false" data-tab="implementation">Implementation</button>
+          <button class="services-tab" type="button" role="tab" aria-selected="false" data-tab="consulting">Consulting</button>
+        </div>
+
+        <div id="training" class="category-panel active" role="tabpanel">
+          <div class="accordion-group">
+            <Accordion title="Beginner Program">
+              <p class="muted">
+                Kickstart your AI journey with a comprehensive introduction to machine learning, automation concepts, and ethical considerations. Includes hands-on exercises and optional certification.
+              </p>
+            </Accordion>
+            <Accordion title="Intermediate Program">
+              <p class="muted">
+                Deepen your skills with practical AI projects, advanced automation workflows, and integration techniques. Includes exam and certification.
+              </p>
+            </Accordion>
+            <Accordion title="Expert Program">
+              <p class="muted">
+                Master AI strategy, compliance (EU AI Act), and building production-ready AI systems. Includes capstone project and professional certification.
+              </p>
+            </Accordion>
+          </div>
+        </div>
+
+        <div id="workshops" class="category-panel" role="tabpanel">
+          <div class="accordion-group">
+            <Accordion title="RAG System Workshop">
+              <p class="muted">
+                Learn to build a Retrieval-Augmented Generation system using no-code tools like n8n and vector databases. Includes live demos and your own working pipeline.
+              </p>
+            </Accordion>
+            <Accordion title="Automation Workflow Lab">
+              <p class="muted">
+                Design and deploy automated workflows for your business processes using tools like n8n, Qdrant, and Ollama.
+              </p>
+            </Accordion>
+          </div>
+        </div>
+
+        <div id="implementation" class="category-panel" role="tabpanel">
+          <div class="accordion-group">
+            <Accordion title="Custom RAG System">
+              <p class="muted">
+                We design, build, and deploy a RAG system tailored to your data and business needs, fully hosted on-prem or in your cloud.
+              </p>
+            </Accordion>
+            <Accordion title="Workflow Automation Integration">
+              <p class="muted">
+                We analyse your processes and implement automation workflows that integrate seamlessly with your existing tools.
+              </p>
+            </Accordion>
+          </div>
+        </div>
+
+        <div id="consulting" class="category-panel" role="tabpanel">
+          <div class="accordion-group">
+            <Accordion title="AI Strategy Consulting">
+              <p class="muted">
+                Work with our experts to define your AI adoption roadmap, identify high-impact use cases, and ensure compliance with regulations.
+              </p>
+            </Accordion>
+            <Accordion title="Technology Advisory">
+              <p class="muted">
+                Independent advice on AI platforms, tools, and architectures to fit your business requirements and budget.
+              </p>
+            </Accordion>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script client:load>
+    const tabs = document.querySelectorAll('.services-tab');
+    const panels = document.querySelectorAll('.category-panel');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-tab');
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        panels.forEach(panel => {
+          panel.classList.toggle('active', panel.id === target);
+        });
+      });
+    });
+
+    document.querySelectorAll('.accordion-group').forEach(group => {
+      const accordions = Array.from(group.querySelectorAll('.accordion'));
+      const closeAcc = acc => {
+        acc.classList.remove('open');
+        const btn = acc.querySelector('.accordion-button');
+        const content = acc.querySelector('.accordion-content');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+        if (content) content.style.maxHeight = 0;
+      };
+      const openAcc = acc => {
+        acc.classList.add('open');
+        const btn = acc.querySelector('.accordion-button');
+        const content = acc.querySelector('.accordion-content');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+        if (content) content.style.maxHeight = content.scrollHeight + 'px';
+      };
+      accordions.forEach(acc => {
+        const btn = acc.querySelector('.accordion-button');
+        const content = acc.querySelector('.accordion-content');
+        if (acc.classList.contains('open') && content) {
+          content.style.maxHeight = content.scrollHeight + 'px';
+        }
+        btn?.addEventListener('click', () => {
+          const isOpen = acc.classList.contains('open');
+          accordions.forEach(closeAcc);
+          if (!isOpen) openAcc(acc);
+        });
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.accordion.open .accordion-content').forEach(c => {
+        c.style.maxHeight = c.scrollHeight + 'px';
+      });
+    });
+  </script>
+</BaseLayout>
