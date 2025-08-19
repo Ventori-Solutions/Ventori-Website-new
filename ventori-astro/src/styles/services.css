@@ -21,7 +21,7 @@
   justify-content: center;
   gap: 1rem;
   border-bottom: 2px solid var(--bg-accent);
-  margin-top: 2rem;
+  padding: 1rem;
 }
 
 .services-tab {
