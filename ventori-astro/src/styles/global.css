@@ -153,14 +153,6 @@ body{
 .cta{padding:64px 0;background:linear-gradient(90deg,var(--primary),var(--accent));text-align:center}
 .cta .btn-light{margin-top:16px}
 
-/* Tech scroller */
-.tech-track{position:relative;overflow:hidden}
-.tech-scroller{display:flex;gap:16px;padding:16px;animation:scroll 20s linear infinite;width:max-content}
-.tech-scroller:hover{animation-play-state:paused}
-.tech-item{min-width:150px;display:grid;place-items:center;padding:16px;background:var(--bg-accent);border-radius:12px;border:1px solid transparent;transition:border var(--transition);font-size:3rem;color:var(--text)}
-.tech-item:hover{border-color:var(--accent)}
-
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* About */
 .about-grid{display:grid;gap:32px}
