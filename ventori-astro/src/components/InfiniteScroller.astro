@@ -1,0 +1,231 @@
+---
+type TechItem =
+  | { title: string; path: string; href?: undefined; color?: string; bg?: string; size?: number; hoverColor?: string } // inline SVG path
+  | { title: string; href: string; path?: undefined; color?: string; bg?: string; size?: number; hoverColor?: string } // <use> sprite symbol
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  items: TechItem[];
+  logoColor?: string;        // CSS color, e.g. "#fff"
+  tileSize?: number;         // px square (default 150)
+  speed?: number;            // px/s for marquee
+  bg?: string;               // tile background
+}
+
+const {
+  title = "Our Technology Partners",
+  subtitle = "We work with leading AI and automation platforms to deliver best-in-class solutions",
+  items = [],
+  logoColor = "#fff",
+  tileSize = 150,
+  speed = 40,
+  bg = "var(--bg-accent, #192d49)",
+} = Astro.props;
+
+// Minimal demo items.
+// Tip: copy SVG paths from Simple Icons; keep only the <path d="..."> value.
+// const items = [
+  // { title: "Docker", path: "M... (docker path)" },
+  // { title: "GitHub", href: "/vendor-icons/sprite.svg#si-github" }, // using a sprite
+//];
+
+// SVGs: https://simpleicons.org/
+
+//  <TechStack
+//    title="Our Technology Partners"
+//    subtitle="We work with leading AI and automation platforms to deliver best-in-class solutions"
+//    items={items}
+//    logoColor="#fff"
+//    tileSize={150}
+//    speed={40}
+//  />
+---
+
+<section class="section bg-secondary overflow-hidden"
+         style={`--logo-color:${logoColor}; --tile-size:${tileSize}px; --speed:${speed}; --tile-bg:${bg};`}>
+  <div class="container">
+    <div class="section-head center">
+      <h2 class="h2">{title}</h2>
+      {subtitle && <p class="lead muted">{subtitle}</p>}
+    </div>
+
+    <div class="tech-track" id="tech-track" aria-label="Technology partners scroller">
+      <div class="tech-scroller" id="tech-scroller">
+        <!-- Canonical row; JS will clone -->
+        <div class="tech-row" id="tech-row">
+          {items.map((it) => {
+            const styleParts = [
+              it.color ? `--logo-color:${it.color}` : '',
+              it.bg ? `--tile-bg:${it.bg}` : '',
+              typeof it.size === 'number' ? `--tile-size:${it.size}px` : '',
+              it.hoverColor ? `--logo-hover:${it.hoverColor}` : '',
+            ].filter(Boolean);
+            const styleAttr = styleParts.join(';');
+
+            return (
+              <div class="tech-item" aria-label={it.title} style={styleAttr} data-brand={it.title?.toLowerCase()}>
+                {it.path && (
+                  <svg class="logo" viewBox="0 0 24 24" role="img" aria-label={it.title}>
+                    <title>{it.title}</title>
+                    <path d={it.path} fill="currentColor" />
+                  </svg>
+                )}
+                {it.href && (
+                  <svg class="logo" viewBox="0 0 24 24" role="img" aria-label={it.title}>
+                    <title>{it.title}</title>
+                    <use href={it.href} />
+                  </svg>
+                )}
+                <span class="sr-only" style="display:none">{it.title}</span> <!-- display for titles -->
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="fade-left" aria-hidden="true"></div>
+      <div class="fade-right" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+.container{max-width:1200px;margin:0 auto;padding:0 16px}
+.section-head.center{text-align:center;margin-bottom:1.25rem}
+.h2{margin-bottom:.5rem}
+
+/* marquee container */
+.tech-track{
+  --tile-gap:16px;
+  --group-gap:16px;
+  --segment-w:0px;
+  --duration:20s;
+
+  position:relative;
+  overflow:hidden;
+  max-width:1200px;
+  margin-inline:auto;
+  padding: 1rem 0 0 0;
+}
+
+/* moving strip */
+.tech-scroller{
+  display:flex;
+  column-gap:var(--group-gap);
+  width:max-content;
+  will-change:transform;
+  animation: marquee var(--duration) linear infinite;
+}
+.tech-track:hover .tech-scroller,
+.tech-track:focus-within .tech-scroller{ animation-play-state: paused; }
+
+/* single group */
+.tech-row{ display:flex; gap:var(--tile-gap); }
+
+/* tiles */
+.tech-item{
+  width:var(--tile-size,150px);
+  aspect-ratio:1/1;
+  display:grid;
+  place-items:center;
+
+  padding:16px;
+  background:var(--tile-bg, #192d49);
+  border-radius:12px;
+  border:1px solid transparent;
+
+  color: var(--logo-color, #f3f3f3);
+  transition:border var(--transition,.2s), transform var(--transition,.2s);
+  user-select:none; white-space:nowrap;
+}
+.tech-item:hover {
+  border-color: var(--accent, #00a8e8);
+  transform: translateY(-2px);
+  color: var(--logo-hover, currentColor); /* optional: change color on hover */
+}
+
+/* logos (ensure they follow color and don't clip) */
+.tech-item .logo{
+  width:70%;
+  height:70%;
+  display:block;
+  fill: currentColor;
+  stroke: currentColor;
+  overflow: visible;
+}
+.tech-item svg
+{
+  stroke-width: 0;
+}
+
+/* fades */
+.fade-left,.fade-right{
+  position:absolute;top:0;bottom:0;width:80px;pointer-events:none;z-index:2;
+  background:linear-gradient(to right, var(--bg-secondary,#000E21), transparent);
+}
+.fade-right{ right:0;left:auto;background:linear-gradient(to left, var(--bg-secondary,#000E21), transparent); }
+.fade-left{ left:0; }
+
+/* marquee keyframes */
+@keyframes marquee{
+  from{ transform:translate3d(0,0,0); }
+  to  { transform:translate3d(calc(-1 * var(--segment-w)),0,0); }
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){ .tech-scroller{ animation:none; } }
+</style>
+
+<script is:inline>
+/**
+ * Seamless marquee. Calculates the segment width (row + gap) and clones rows
+ * so the scroller width >= viewport + segment, then animates exactly one segment.
+ */
+(function(){
+    const track    = document.getElementById('tech-track');
+    const scroller = document.getElementById('tech-scroller');
+    const row      = document.getElementById('tech-row');
+  if (!track || !scroller || !row) return;
+
+  const toNum = (v) => parseFloat(String(v).replace('px','')) || 0;
+
+  function setup(){
+    // remove previous clones
+    [...scroller.children].forEach(n => { if (n !== row) n.remove(); });
+
+    // measure canonical row and gap
+    const rowW = row.getBoundingClientRect().width;
+    const cs = getComputedStyle(scroller);
+    const groupGap = toNum(cs.columnGap);
+    const segmentW = rowW + groupGap;
+
+    const viewportW = track.getBoundingClientRect().width;
+
+    // clone until coverage
+    let scrollerW = rowW;
+    while (scrollerW < viewportW + segmentW) {
+      const clone = row.cloneNode(true);
+      clone.setAttribute('aria-hidden','true');
+      scroller.appendChild(clone);
+      scrollerW += segmentW;
+    }
+
+    // set CSS vars
+    scroller.style.setProperty('--segment-w', segmentW + 'px');
+
+    // duration = segmentW / speed (px/s)
+    const speed = parseFloat(getComputedStyle(track).getPropertyValue('--speed')) || 40;
+    const duration = Math.max(1, segmentW / speed);
+    scroller.style.setProperty('--duration', duration + 's');
+
+    // restart animation
+    scroller.style.animation = 'none'; void scroller.offsetHeight; // reflow
+    scroller.style.animation = ''; scroller.style.animationDuration = duration + 's';
+  }
+
+  let t; const onResize = () => { clearTimeout(t); t = setTimeout(setup, 150); };
+  window.addEventListener('resize', onResize, { passive:true });
+  setup();
+})();
+</script>
